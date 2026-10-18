@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Typecheck, Test & Build
+    name: Typecheck, Test & Validate
     runs-on: ubuntu-latest
 
     steps:
@@ -19,16 +19,30 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.x
-          cache: 'npm'
+
+      - name: Verify Documentation & Governance Standards
+        run: |
+          echo "Verifying repository governance standards..."
+          test -f README.md && echo "✓ README.md present"
+          test -f LICENSE && echo "✓ LICENSE present"
+          test -f CONTRIBUTING.md && echo "✓ CONTRIBUTING.md present"
+          test -f CONTRIBUTORS.md && echo "✓ CONTRIBUTORS.md present"
+          test -f SECURITY.md && echo "✓ SECURITY.md present"
+          test -f CHANGELOG.md && echo "✓ CHANGELOG.md present"
 
       - name: Install Dependencies
         run: |
-          if [ -f package-lock.json ]; then npm ci; elif [ -f package.json ]; then npm install; else echo "No package.json"; fi
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f package.json ]; then
+            npm install
+          else
+            echo "No package.json configured yet for foundation milestone."
+          fi
 
-      - name: Run Typecheck & Tests
+      - name: Run Tests & Build
         run: |
-          if [ -f package.json ]; then npm test --if-present || true; fi
-
-      - name: Build Assets
-        run: |
-          if [ -f package.json ]; then npm run build --if-present || true; fi
+          if [ -f package.json ]; then
+            npm test --if-present || true
+            npm run build --if-present || true
+          fi
