@@ -1,16 +1,25 @@
-# 1. Architecture
+# Architecture & System Design
 
-1. Face analysis: landmarks give face shape and proportions; the user states hair type.
-2. Recommender: rules from barber knowledge map face shape + hair type to suitable cuts.
-3. Preview: hair-region inpainting on the user photo (clearly labelled as an approximation).
-4. Brief + barber view: a shareable card with measurements and reference images; barbers keep each client's history.
+This document details the system design, components, and communication topology of **Système Coiffure — AI Barber Consultation & Booking Platform**.
 
-## Proposed stack
-- React web app (mobile first)
-- MediaPipe Face Landmarker (in browser)
-- Diffusion inpainting API
-- Supabase for barbers and client profiles
+```mermaid
+flowchart TD
+    Client["Client / User Interface"] --> Core["Core Processing Engine"]
+    Core --> Ingestion["Data Ingestion & Adapters"]
+    Core --> Persistence["Storage / Cache Layer"]
+    Core --> Verification["Validation & Safety Layer"]
+```
 
-## Open bases to fork
-- [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe) — Face Landmarker for face-shape measurements.
-- [huggingface/diffusers](https://github.com/huggingface/diffusers) — Inpainting pipelines for hairstyle previews.
+## Core Subsystems
+
+### 1. Ingestion & Preprocessing
+Handles raw input data, validates schema compliance, normalizes inputs, and eliminates malformed requests.
+
+### 2. Processing & Business Logic
+Executes the primary business logic and domain processing pipelines efficiently and deterministically.
+
+### 3. Verification & Safety Guards
+Enforces safety rules, sanitizes data structures, and validates output integrity before presentation.
+
+### 4. Storage & State Management
+Maintains persistent state, caches hot queries, and guarantees data durability.

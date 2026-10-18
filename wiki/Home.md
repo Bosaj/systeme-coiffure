@@ -1,9 +1,26 @@
-# Système Coiffure — Wiki
+# Welcome to the Système Coiffure — AI Barber Consultation & Booking Platform Wiki
 
-> Pick a haircut that suits your face, preview it, and send a clear brief straight to your barber.
+Welcome to the official documentation for **Système Coiffure — AI Barber Consultation & Booking Platform** (`@Bosaj/systeme-coiffure`).
 
-## Pages
-- [[1-Architecture]] — how the system is meant to fit together
-- [[2-Roadmap]] — milestones and status
+## Project Overview
 
-See the repository [README](../README.md) for the full context, prior art, and the LLM-handoff notes.
+Two-sided barber consultation and client booking platform featuring AI haircut visualizer, face shape analysis, and digital consultation briefs.
+
+---
+
+## Documentation Navigation
+
+* **[Architecture & System Design](1-Architecture)** — High-level architecture, module decomposition, and data flow.
+* **[Roadmap & Milestones](2-Roadmap)** — Version progression, future features, and release schedules.
+* **[Developer Setup & Contribution](Developer-Setup)** — Local environment setup, test execution, and CI/CD workflows.
+
+---
+
+## Key Principles & Quality Standards
+
+1. **Deterministic Quality:** 100% automated test coverage for core business logic and critical paths.
+2. **Security & Privacy First:** Zero unencrypted credentials, explicit consent gates, and secure communication channels.
+3. **Open Collaboration:** Adherence to Conventional Commits and semantic versioning.
+
+---
+*Maintained with excellence by [@Bosaj](https://github.com/Bosaj).*
